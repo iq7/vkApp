@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cUd-Lu-qXu">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--AuthVC-->
+        <scene sceneID="P8x-Oa-MeF">
+            <objects>
+                <viewController id="cUd-Lu-qXu" customClass="VKAuthVC" customModule="vkApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZTv-RR-buk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3GD-IA-UPa">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3GD-IA-UPa" firstAttribute="leading" secondItem="qtE-N7-2IA" secondAttribute="leading" id="39t-jj-k2f"/>
+                            <constraint firstItem="qtE-N7-2IA" firstAttribute="trailing" secondItem="3GD-IA-UPa" secondAttribute="trailing" id="VFM-8R-Ccb"/>
+                            <constraint firstItem="3GD-IA-UPa" firstAttribute="top" secondItem="qtE-N7-2IA" secondAttribute="top" id="WbF-il-eYR"/>
+                            <constraint firstItem="qtE-N7-2IA" firstAttribute="bottom" secondItem="3GD-IA-UPa" secondAttribute="bottom" id="rde-aj-bVk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qtE-N7-2IA"/>
+                    </view>
+                    <connections>
+                        <outlet property="webview" destination="3GD-IA-UPa" id="mNB-Gy-T0J"/>
+                        <segue destination="h3F-il-TM2" kind="presentation" identifier="authSegue" id="wz8-9J-8Xh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zag-r9-oD5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2132" y="-683"/>
+        </scene>
+        <!--MainCrossroad-->
+        <scene sceneID="2xx-Lx-Vot">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MainCrossroad" id="h3F-il-TM2" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kZJ-xP-7m4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2746" y="-684"/>
+        </scene>
+    </scenes>
+</document>

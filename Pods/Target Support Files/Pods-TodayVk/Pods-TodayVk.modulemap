@@ -1,0 +1,6 @@
+framework module Pods_TodayVk {
+  umbrella header "Pods-TodayVk-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14113" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14033"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="WatchKit" customModuleProvider="target">
+                    <items>
+                        <table alignment="left" id="prP-aW-Ah9">
+                            <items>
+                                <tableRow identifier="tableRow" id="Sul-ny-VrC" customClass="TableRow" customModule="WatchKit_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="QM4-j2-hyB">
+                                        <items>
+                                            <imageView width="40" height="40" alignment="left" id="c7Y-wz-hrW"/>
+                                            <label alignment="left" verticalAlignment="center" textAlignment="left" numberOfLines="0" id="FnM-N6-ev7">
+                                                <color key="textColor" red="0.82870819650000005" green="0.04629708707" blue="0.24250482249999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="font" type="system" pointSize="14"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" red="0.14117647059999999" green="0.0" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="avatar" destination="c7Y-wz-hrW" id="2KW-vD-CaM"/>
+                                        <outlet property="name" destination="FnM-N6-ev7" id="WWM-PI-v0t"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="tableView" destination="prP-aW-Ah9" id="eQf-1n-hLW"/>
+                    </connections>
+                </controller>
+            </objects>
+        </scene>
+    </scenes>
+</document>
