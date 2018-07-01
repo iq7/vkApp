@@ -177,7 +177,7 @@
                     <navigationItem key="navigationItem" title="Новости" id="TZi-JJ-TNw">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Yfm-FM-HYk">
                             <connections>
-                                <segue destination="gq0-uR-bNg" kind="show" id="RkX-6w-Adx"/>
+                                <segue destination="gq0-uR-bNg" kind="show" identifier="backToNewsffed" id="RkX-6w-Adx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -194,15 +194,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="line" placeholder="Что у Вас нового?" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="7Ts-2t-x6p">
-                                <rect key="frame" x="10" y="10" width="355" height="523"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="line" placeholder="Что у Вас нового?" minimumFontSize="14" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="7Ts-2t-x6p">
+                                <rect key="frame" x="10" y="10" width="355" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="d2M-BE-o6s"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RlQ-vF-izy">
-                                <rect key="frame" x="10" y="543" width="140" height="50"/>
+                                <rect key="frame" x="10" y="170" width="140" height="50"/>
                                 <color key="backgroundColor" red="0.67513506830000003" green="0.037717482669999997" blue="0.19756472859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="I6A-4y-eeu"/>
@@ -214,7 +217,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4br-0V-4PY">
-                                <rect key="frame" x="225" y="543" width="140" height="50"/>
+                                <rect key="frame" x="225" y="170" width="140" height="50"/>
                                 <color key="backgroundColor" red="0.67513506830000003" green="0.037717482669999997" blue="0.19756472859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="6WL-OX-EHb"/>
@@ -222,28 +225,27 @@
                                 </constraints>
                                 <state key="normal" title="Отправить"/>
                                 <connections>
-                                    <segue destination="1KW-nw-z3r" kind="unwind" unwindAction="sendMessagePressedWithUnwindSegue:" id="akx-Vd-7Yo"/>
+                                    <segue destination="1KW-nw-z3r" kind="unwind" identifier="sendMessagePressed" unwindAction="sendMessagePressedWithUnwindSegue:" id="akx-Vd-7Yo"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.0" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.82870819650000005" green="0.04629708707" blue="0.24250482249999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="aMk-64-xkC" firstAttribute="trailing" secondItem="7Ts-2t-x6p" secondAttribute="trailing" constant="10" id="8Sg-pm-NCZ"/>
-                            <constraint firstItem="aMk-64-xkC" firstAttribute="trailing" secondItem="4br-0V-4PY" secondAttribute="trailing" constant="10" id="K47-L0-8hf"/>
-                            <constraint firstItem="aMk-64-xkC" firstAttribute="bottom" secondItem="4br-0V-4PY" secondAttribute="bottom" constant="10" id="KSW-Tj-qoZ"/>
-                            <constraint firstItem="aMk-64-xkC" firstAttribute="bottom" secondItem="RlQ-vF-izy" secondAttribute="bottom" constant="10" id="Pv1-hx-6HL"/>
-                            <constraint firstItem="7Ts-2t-x6p" firstAttribute="top" secondItem="aMk-64-xkC" secondAttribute="top" constant="10" id="U2h-KI-r15"/>
-                            <constraint firstItem="RlQ-vF-izy" firstAttribute="leading" secondItem="aMk-64-xkC" secondAttribute="leading" constant="10" id="eLy-OY-8Bc"/>
-                            <constraint firstItem="7Ts-2t-x6p" firstAttribute="leading" secondItem="aMk-64-xkC" secondAttribute="leading" constant="10" id="kpD-gV-HrT"/>
-                            <constraint firstItem="RlQ-vF-izy" firstAttribute="top" secondItem="7Ts-2t-x6p" secondAttribute="bottom" constant="10" id="rCJ-uO-dQc"/>
+                            <constraint firstItem="RlQ-vF-izy" firstAttribute="top" secondItem="7Ts-2t-x6p" secondAttribute="bottom" constant="10" id="2FE-ID-0tD"/>
+                            <constraint firstItem="aMk-64-xkC" firstAttribute="trailing" secondItem="4br-0V-4PY" secondAttribute="trailing" constant="10" id="F1N-CU-8Q7"/>
+                            <constraint firstItem="7Ts-2t-x6p" firstAttribute="leading" secondItem="aMk-64-xkC" secondAttribute="leading" constant="10" id="FK4-0i-CHW"/>
+                            <constraint firstItem="4br-0V-4PY" firstAttribute="top" secondItem="7Ts-2t-x6p" secondAttribute="bottom" constant="10" id="XbO-dg-Ht3"/>
+                            <constraint firstItem="7Ts-2t-x6p" firstAttribute="top" secondItem="aMk-64-xkC" secondAttribute="top" constant="10" id="aCJ-DD-UtB"/>
+                            <constraint firstItem="RlQ-vF-izy" firstAttribute="leading" secondItem="aMk-64-xkC" secondAttribute="leading" constant="10" id="jBH-Xc-LCR"/>
+                            <constraint firstItem="aMk-64-xkC" firstAttribute="trailing" secondItem="7Ts-2t-x6p" secondAttribute="trailing" constant="10" id="pHE-c8-JAd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aMk-64-xkC"/>
                     </view>
                     <navigationItem key="navigationItem" title="Сообщение" id="j83-wu-ltb">
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="37B-32-1Rn">
                             <connections>
-                                <segue destination="N6K-PU-DnK" kind="show" id="6VK-xq-hFK"/>
+                                <segue destination="N6K-PU-DnK" kind="show" identifier="selectPhotoSegue" id="6VK-xq-hFK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

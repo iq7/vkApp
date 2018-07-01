@@ -68,14 +68,17 @@ extension VKService {
         let request = NSMutableURLRequest(url: serverUrl)
         let mutableData = NSMutableData();
         mutableData.append(self.convertStringToData("--Boundary-\(NSUUID().uuidString)\r\nContent-Disposition: form-data; name=\"firstName\"\r\n\r\nСекретный агент\r\n--Boundary-\(NSUUID().uuidString)\r\nContent-Disposition: form-data; name=\"file\"; filename=\"photo.jpg\"\r\nContent-Type: image/jpg\r\n\r\n"))
-        mutableData.append(imageData as Data)
+        mutableData.append(imageData)
+        print("-------- imageData -----------")
+        print(imageData)
+        print("------------------------------")
         mutableData.append(self.convertStringToData("\r\n--Boundary-\(NSUUID().uuidString)\r\n"))
 
         request.httpMethod = "POST"
         request.setValue("multipart/form-data; boundary=Boundary-\(NSUUID().uuidString)", forHTTPHeaderField: "Content-Type")
         request.httpBody = mutableData as Data
 
-        let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+        let task = URLSession.shared.dataTask(with: request as URLRequest) { optionalData, response, error in
 
             if error != nil {
                 print(error ?? "что-то пошло не так")
@@ -83,14 +86,19 @@ extension VKService {
             }
 
             do {
-//                guard let data = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary else { return }
-//                let json = JSON(data)
+                guard
+                    let unwrapData = optionalData,
+                    let data = try JSONSerialization.jsonObject(with: unwrapData, options: []) as? NSDictionary
+                else { return }
+                
+                let json = JSON(data)
+                print("\n--------\njson: \(json)")
 
-//                VKService.savePhoto(photo: json["photo"].stringValue, server: json["server"].stringValue, hash: json["hash"].stringValue) { [weak self] completion in
-
-//                    self?.vKService.newVkPost(message: (self?.postText.text!)!, geo: self?.coordForPost, att: completion)
-//                    self?.performSegue(withIdentifier: "doneNewPost", sender: self)
-//                }
+                VKService.savePhoto(photo: json["photo"].stringValue, server: json["server"].stringValue, hash: json["hash"].stringValue) { completion in
+                    print("-------- savePhoto -----------")
+                    print("\(completion)")
+                    print("------------------------------")
+                }
             } catch {
                 print(error)
             }

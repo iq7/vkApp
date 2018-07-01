@@ -40,7 +40,12 @@ class PostMapVC: UIViewController {
         while flag {
         }
         guard let destinationVC = segue.destination as? PostVC else { return }
-        destinationVC.myCurrentPlace = myCurrentPlace
+
+        if let text = destinationVC.postText.text {
+            destinationVC.postText.text = text + "\n" + myCurrentPlace
+        } else {
+            destinationVC.postText.text = myCurrentPlace
+        }
     }
 
     @IBAction func mapTap(_ sender: UITapGestureRecognizer) {

@@ -13,11 +13,12 @@ class CamersVC: UIViewController {
     
     @IBOutlet weak var resultPhoto: UIImageView!
     
-    var responseUploadPhotoServer = ResponseUploadPhotoServer()
     let camera = UIImagePickerController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         guard UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) else { return }
         
@@ -25,8 +26,8 @@ class CamersVC: UIViewController {
         camera.mediaTypes = UIImagePickerController.availableMediaTypes(for: .savedPhotosAlbum)!
         camera.allowsEditing = false
         camera.delegate = self
+        camera.sourceType = UIImagePickerControllerSourceType.photoLibrary
         present(camera, animated: true, completion: nil)
-
     }
 }
 
@@ -41,20 +42,19 @@ extension CamersVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
             mediaType == kUTTypeImage as String,
             let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         else { return }
-
+        
         //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         resultPhoto.image = image
 
-        VKService.getWallUploadServer() { [weak self] responseUploadPhotoServer in
+        VKService.getWallUploadServer() { responseUploadPhotoServer in
             guard let responseUploadPhotoServer = responseUploadPhotoServer else {
                 assertionFailure()
                 return
             }
-            self?.responseUploadPhotoServer = responseUploadPhotoServer
-            print("\n------------------")
-            print("\(responseUploadPhotoServer.uploadUrl)")
-            print("\(responseUploadPhotoServer.albumId)")
-            print("\(responseUploadPhotoServer.userId)")
+
+            if responseUploadPhotoServer.uploadUrl != "" {
+                VKService.uploadImageRequest(serverUrl: responseUploadPhotoServer.uploadUrl, image: image)
+            }
         }
         picker.dismiss(animated: true, completion: nil)
     }
