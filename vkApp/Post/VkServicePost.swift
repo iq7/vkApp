@@ -28,6 +28,11 @@ extension VKService {
                 let responseUploadPhotoServer = ResponseUploadPhotoServer(json: json["response"])
                 DispatchQueue.main.async {
                     completion(responseUploadPhotoServer)
+                    print("--------------responseUploadPhotoServer-----------------")
+                    print("\(responseUploadPhotoServer.userId)")
+                    print("\(responseUploadPhotoServer.albumId)")
+                    print("\(responseUploadPhotoServer.uploadUrl)")
+                    print("-------------------------------")
                 }
             } else {
                 DispatchQueue.main.async {
@@ -67,16 +72,17 @@ extension VKService {
 
         let request = NSMutableURLRequest(url: serverUrl)
         let mutableData = NSMutableData();
-        mutableData.append(self.convertStringToData("--Boundary-\(NSUUID().uuidString)\r\nContent-Disposition: form-data; name=\"firstName\"\r\n\r\nСекретный агент\r\n--Boundary-\(NSUUID().uuidString)\r\nContent-Disposition: form-data; name=\"file\"; filename=\"photo.jpg\"\r\nContent-Type: image/jpg\r\n\r\n"))
+        let boundary = NSUUID().uuidString
+        mutableData.append(self.convertStringToData("--Boundary-\(boundary)\r\nContent-Disposition: form-data; name=\"photo\"; filename=\"photo.jpg\"\r\nContent-Type: image/jpg\r\n\r\n"))
         mutableData.append(imageData)
+        mutableData.append(self.convertStringToData("\r\n--Boundary-\(boundary)\r\n"))
+
+        request.httpMethod = "POST"
+        request.setValue("multipart/form-data; boundary=Boundary-\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.httpBody = mutableData as Data
         print("-------- imageData -----------")
         print(imageData)
         print("------------------------------")
-        mutableData.append(self.convertStringToData("\r\n--Boundary-\(NSUUID().uuidString)\r\n"))
-
-        request.httpMethod = "POST"
-        request.setValue("multipart/form-data; boundary=Boundary-\(NSUUID().uuidString)", forHTTPHeaderField: "Content-Type")
-        request.httpBody = mutableData as Data
 
         let task = URLSession.shared.dataTask(with: request as URLRequest) { optionalData, response, error in
 

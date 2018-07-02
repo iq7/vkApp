@@ -24,6 +24,10 @@ class NewsfeedTableVC: UITableViewController {
             assertionFailure("Не удалось получить ID устройства.")
             return
         }
+        print("-----------------")
+        print(NSUUID().uuidString)
+        print(deviceID.uuidString)
+        print("-----------------")
         VKService.registerDevices(deviceID: deviceID.uuidString)
     }
     
