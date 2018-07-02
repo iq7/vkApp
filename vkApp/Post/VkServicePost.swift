@@ -12,8 +12,11 @@ import RealmSwift
 
 extension VKService {
     
-    static func addPost(message: String) {
+    static func addPost(message: String, attachment: String? = nil) {
         var parameters: Parameters = ["v": "5.78", "access_token": token]
+        if let attachment = attachment {
+            parameters["attachment"] = attachment
+        }
         parameters["message"] = message
         let url = baseUrl + "/method/wall.post"
         Alamofire.request(url, method: .get, parameters: parameters).responseData(queue: .global()) { response in
@@ -104,6 +107,7 @@ extension VKService {
                     print("-------- savePhoto -----------")
                     print("\(completion)")
                     print("------------------------------")
+                    VKService.addPost(message: "тестирую приложение", attachment: completion)
                 }
             } catch {
                 print(error)

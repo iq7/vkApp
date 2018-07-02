@@ -19,8 +19,6 @@ class CamersVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         guard UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) else { return }
         
         camera.sourceType = .savedPhotosAlbum
@@ -45,7 +43,6 @@ extension CamersVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
         else { return }
         
         //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-        resultPhoto.image = image
 
         VKService.getWallUploadServer() { responseUploadPhotoServer in
             guard let responseUploadPhotoServer = responseUploadPhotoServer else {
@@ -55,6 +52,7 @@ extension CamersVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
 
             if responseUploadPhotoServer.uploadUrl != "" {
                 VKService.uploadImageRequest(serverUrl: responseUploadPhotoServer.uploadUrl, image: image)
+                self.resultPhoto.image = image
             }
         }
         picker.dismiss(animated: true, completion: nil)

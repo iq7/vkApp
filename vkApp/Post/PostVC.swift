@@ -19,6 +19,8 @@ class PostVC: UIViewController {
     @IBAction func okButtonPressed(unwindSegue: UIStoryboardSegue) {
     }
     
+    var attachment: String?
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let message = postText.text else {
             assertionFailure()
@@ -33,7 +35,7 @@ class PostVC: UIViewController {
             print("-------------------------------")
             print("VKService.addPost(message: mes)")
             print("-------------------------------")
-            VKService.addPost(message: message)
+            VKService.addPost(message: message, attachment: attachment)
         }
     }
 }
